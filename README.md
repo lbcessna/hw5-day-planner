@@ -1,7 +1,8 @@
 # hw5-day-planner
 - Created infrastructure for hw5
 - Moved index.html and style.css to folder.
-
+- Accidentally added a package-lock.json. Not sure what that is; moving on.
+- Added getDate function and appended to the header.
 
 
 
