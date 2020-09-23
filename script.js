@@ -71,8 +71,32 @@ function getDate() {
     var currentDate = moment().format('dddd, MMMM D');
     currentDateEl.append(currentDate);
 }
-getDate();
 
+function saveMeetings() {
+    localStorage.setItem("myDay", JSON.stringify(myDay));
+}
+
+// sets any data in localStorage to the view
+function displaySchedule() {
+    myDay.forEach(function (_thisHour) {
+        $(`#${_thisHour.id}`).val(_thisHour.reminder);
+    })
+}
+
+// sets any existing localStorage data to the view if it exists
+function init() {
+    var storedDay = JSON.parse(localStorage.getItem("myDay"));
+
+    if (storedDay) {
+        myDay = storedDay;
+    }
+
+    saveMeetings();
+    displaySchedule();
+}
+
+getDate();
+init();
 // Create rows for each time block in workDay
 workDay.forEach(function (thisHour) {
     var hourRow = $("<form>").attr({ "class": "row" });
@@ -100,4 +124,13 @@ workDay.forEach(function (thisHour) {
     savePlan.append(saveButton);
     hourRow.append(hourField, hourPlan, savePlan);
 });
+// Save button click event handler.
+$(".saveBtn").on("click", function(event) {
+    event.preventDefault();
+    var saveIndex = $(this).siblings(".description").children(".future").attr("id");
+    myDay[saveIndex].reminder = $(this).siblings(".description").children(".future").val();
+    console.log(saveIndex);
+    saveMeetings();
+    displaySchedule();
+})
 
