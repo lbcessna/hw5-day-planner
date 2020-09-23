@@ -73,19 +73,19 @@ function getDate() {
 }
 
 function saveMeetings() {
-    localStorage.setItem("myDay", JSON.stringify(myDay));
+    localStorage.setItem("workDay", JSON.stringify(myDay));
 }
 
-// sets any data in localStorage to the view
+// Sets any data in localStorage to the view
 function displaySchedule() {
     myDay.forEach(function (_thisHour) {
         $(`#${_thisHour.id}`).val(_thisHour.reminder);
     })
 }
 
-// sets any existing localStorage data to the view if it exists
+// Sets any existing localStorage data to the view if it exists
 function init() {
-    var storedDay = JSON.parse(localStorage.getItem("myDay"));
+    var storedDay = JSON.parse(localStorage.getItem("workDay"));
 
     if (storedDay) {
         myDay = storedDay;
