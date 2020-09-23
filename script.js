@@ -1,3 +1,69 @@
+// Array of objects. Each id represents one hour.
+var workDay = [
+    {
+        id: "0",
+        hour: "09",
+        time: "09",
+        amPm: "am",
+        meeting: ""
+    },
+    {
+        id: "1",
+        hour: "10",
+        time: "10",
+        amPm: "am",
+        meeting: ""
+    },
+    {
+        id: "2",
+        hour: "11",
+        time: "11",
+        amPm: "am",
+        meeting: ""
+    },
+    {
+        id: "3",
+        hour: "12",
+        time: "12",
+        amPm: "pm",
+        meeting: ""
+    },
+    {
+        id: "4",
+        hour: "01",
+        time: "13",
+        amPm: "pm",
+        meeting: ""
+    },
+    {
+        id: "5",
+        hour: "02",
+        time: "14",
+        amPm: "pm",
+        meeting: ""
+    },
+    {
+        id: "6",
+        hour: "03",
+        time: "15",
+        amPm: "pm",
+        meeting: ""
+    },
+    {
+        id: "7",
+        hour: "04",
+        time: "16",
+        amPm: "pm",
+        meeting: ""
+    },
+    {
+        id: "8",
+        hour: "05",
+        time: "17",
+        amPm: "pm",
+        meeting: ""
+    }]
+
 var currentDateEl = document.querySelector("#currentDay");
 
 // Look at local cpu to determine current date.
@@ -6,72 +72,6 @@ function getDate() {
     currentDateEl.append(currentDate);
 }
 getDate();
-
-// Array of objects. Each id represents one hour.
-var workDay = [
-    {
-        id: "0",
-        hour: "09",
-        time: "09",
-        amPm: "am",
-        reminder: ""
-    },
-    {
-        id: "1",
-        hour: "10",
-        time: "10",
-        amPm: "am",
-        reminder: ""
-    },
-    {
-        id: "2",
-        hour: "11",
-        time: "11",
-        amPm: "am",
-        reminder: ""
-    },
-    {
-        id: "3",
-        hour: "12",
-        time: "12",
-        amPm: "pm",
-        reminder: ""
-    },
-    {
-        id: "4",
-        hour: "01",
-        time: "13",
-        amPm: "pm",
-        reminder: ""
-    },
-    {
-        id: "5",
-        hour: "02",
-        time: "14",
-        amPm: "pm",
-        reminder: ""
-    },
-    {
-        id: "6",
-        hour: "03",
-        time: "15",
-        amPm: "pm",
-        reminder: ""
-    },
-    {
-        id: "7",
-        hour: "04",
-        time: "16",
-        amPm: "pm",
-        reminder: ""
-    },
-    {
-        id: "8",
-        hour: "05",
-        time: "17",
-        amPm: "pm",
-        reminder: ""
-    }]
 
 // Create rows for each time block in workDay
 workDay.forEach(function (thisHour) {
@@ -91,6 +91,13 @@ workDay.forEach(function (thisHour) {
     } else if (thisHour.time > moment().format("HH")) {
         planData.attr({ "class": "future" })
     }
-    hourRow.append(hourField);
+
+    var saveButton = $("<i class='far fa-save fa-lg'></i>")
+    var savePlan = $("<button>")
+        .attr({
+            "class": "col-md-1 saveBtn"
+    });
+    savePlan.append(saveButton);
+    hourRow.append(hourField, hourPlan, savePlan);
 });
 
