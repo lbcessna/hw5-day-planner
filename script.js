@@ -73,12 +73,12 @@ function getDate() {
 }
 
 function saveMeetings() {
-    localStorage.setItem("workDay", JSON.stringify(myDay));
+    localStorage.setItem("workDay", JSON.stringify(workDay));
 }
 
 // Sets any data in localStorage to the view
 function displaySchedule() {
-    myDay.forEach(function (_thisHour) {
+    workDay.forEach(function (_thisHour) {
         $(`#${_thisHour.id}`).val(_thisHour.reminder);
     })
 }
@@ -88,15 +88,14 @@ function init() {
     var storedDay = JSON.parse(localStorage.getItem("workDay"));
 
     if (storedDay) {
-        myDay = storedDay;
+        workDay = storedDay;
     }
-
     saveMeetings();
     displaySchedule();
 }
 
 getDate();
-init();
+
 // Create rows for each time block in workDay
 workDay.forEach(function (thisHour) {
     var hourRow = $("<form>").attr({ "class": "row" });
@@ -124,11 +123,14 @@ workDay.forEach(function (thisHour) {
     savePlan.append(saveButton);
     hourRow.append(hourField, hourPlan, savePlan);
 });
+
+init();
+
 // Save button click event handler.
 $(".saveBtn").on("click", function(event) {
     event.preventDefault();
     var saveIndex = $(this).siblings(".description").children(".future").attr("id");
-    myDay[saveIndex].reminder = $(this).siblings(".description").children(".future").val();
+    workDay[saveIndex].reminder = $(this).siblings(".description").children(".future").val();
     console.log(saveIndex);
     saveMeetings();
     displaySchedule();
