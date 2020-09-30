@@ -1,3 +1,7 @@
+# link to launched project
+https://lbcessna.github.io/hw3-password-generator/
+
+
 # hw5-day-planner
 - Created infrastructure for hw5
 - Moved index.html and style.css to folder.
