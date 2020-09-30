@@ -1,6 +1,5 @@
 # link to launched project
-https://lbcessna.github.io/hw3-password-generator/
-
+https://lbcessna.github.io/hw5-day-planner/
 
 # hw5-day-planner
 - Created infrastructure for hw5
